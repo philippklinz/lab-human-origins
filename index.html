@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Was wissen wir über die vielen Linien unserer eigenen Evolution?">
 <title>Entstehung des Menschen · Learning Lab 05</title>
+<link rel="stylesheet" href="modern-objectivity.css">
 <style>
-:root{color-scheme:light;--paper:#f3f2ef;--ink:#202325;--graphite:#23292b;--signal:#009e98;--edge:#d4d4cf;--muted:#555d60}
+:root{color-scheme:light;--paper:var(--mo-bg);--ink:var(--mo-text);--graphite:var(--mo-rail);--signal:var(--mo-accent);--edge:var(--mo-border);--muted:var(--mo-muted)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Liberation Sans",Arial,sans-serif}
 a{color:inherit;text-underline-offset:3px}:focus-visible{outline:3px solid var(--signal);outline-offset:4px}
 header{background:var(--graphite);color:#e9f0ec;border-bottom:3px solid var(--signal)}.top{max-width:1120px;margin:auto;padding:19px 28px;display:flex;justify-content:space-between;gap:20px;align-items:center;font:12px "Liberation Mono",monospace;letter-spacing:.04em}.top a{color:#b5ddd6;text-decoration:none}.top a:hover{text-decoration:underline}
@@ -15,6 +16,12 @@ main{max-width:1120px;margin:auto;padding:74px 28px 110px}.eyebrow{font:11px "Li
 footer{max-width:1120px;margin:auto;border-top:1px solid var(--edge);padding:24px 28px 40px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font:12px "Liberation Mono",monospace;color:var(--muted)}footer a{color:#006f6b}
 @media(max-width:720px){main{padding:52px 20px 70px}.grid{grid-template-columns:1fr;gap:42px}.top,footer{padding-left:20px;padding-right:20px}.lead{font-size:19px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Modern Objectivity reference v0.1: stage-specific adjustments. */
+:focus-visible{outline:3px solid var(--mo-focus)!important}
+.note{border-radius:var(--mo-radius-sm);box-shadow:var(--mo-shadow)}
+.eyebrow{color:var(--mo-accent)}
+footer a{color:var(--mo-accent)}
 </style>
 </head>
 <body>
@@ -37,6 +44,6 @@ footer{max-width:1120px;margin:auto;border-top:1px solid var(--edge);padding:24p
 </div>
 <section class="note" style="margin-top:45px"><strong>Wissenschaftliche Einordnung:</strong> Keine lineare 'Affen-zu-Mensch'-Treppe, keine biologischen Werturteile. Unsichere Datierungen und wissenschaftlich umstrittene Zuordnungen kennzeichnen.</section>
 </main>
-<footer><span>STANDALONE · STATIC HTML · MODERN OBJECTIVITY</span><span><a href="README.md">README</a> · <a href="AGENTS.md">AGENTS</a> · <a href="LICENSE">GPL v2.0</a></span></footer>
+<footer><span>STANDALONE · STATIC HTML · <a href="https://philippklinz.github.io/modern-objectivity-style/">MODERN OBJECTIVITY ↗</a></span><span><a href="README.md">README</a> · <a href="AGENTS.md">AGENTS</a> · <a href="LICENSE">GPL v2.0</a></span></footer>
 </body>
 </html>

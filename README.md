@@ -44,3 +44,7 @@ Siehe [AGENTS.md](AGENTS.md) für Aufgaben, Designgrundsätze, Prüfpunkte und w
 ## Lizenz
 
 [GNU General Public License v2.0](LICENSE) (GPL-2.0-only). Abweichende Lizenzen hinzugefügter Bibliotheken oder fremder Inhalte sind getrennt zu beachten.
+
+## Modern Objectivity style kit
+
+Die Gestaltung nutzt eine **lokale, unveränderte Kopie** des [Modern Objectivity Style Kits v0.1 (Draft)](https://philippklinz.github.io/modern-objectivity-style/) aus [`styles/modern-objectivity.css`](https://github.com/philippklinz/modern-objectivity-style/blob/main/styles/modern-objectivity.css), Quellstand `c6af71a8688b9001313d19a642e8f308fa463280` (GPL-2.0-only). Die eigenständige HTML-Seite definiert ihre spezifische Bühne über die semantischen `--mo-*`-Tokens. Keine externe Runtime oder CDN erforderlich.

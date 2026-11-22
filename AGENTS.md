@@ -67,3 +67,7 @@ Modern Objectivity, as documented in the provisional Apperception Machinery Bran
 4. State what was tested, what was not, and any scientific uncertainty.
 5. Never claim a browser test or GitHub Pages deployment without evidence.
 6. Keep docs accurate: planned exhibits are not implemented features.
+
+## Modern Objectivity implementation
+
+Use the **locally vendored** `modern-objectivity.css` (the v0.1 draft [practical style kit](https://philippklinz.github.io/modern-objectivity-style/), source SHA `c6af71a8688b9001313d19a642e8f308fa463280`). Preserve the vendor stylesheet as an exact copy; make stage-specific changes in the local page styles and prefer `--mo-*` semantic tokens. This is a reference style, **not a universal visual mandate**. Keep the standalone site functioning with no CDN dependencies. If upgrading the kit, compare behavior and update attribution/version notes.
