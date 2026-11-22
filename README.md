@@ -1,50 +1,59 @@
-# Entstehung des Menschen — Learning Lab 05
+# Die Entstehung des Menschen — Learning Lab 05
 
-> Was wissen wir über die vielen Linien unserer eigenen Evolution?
+> Unsere Geschichte hat viele Äste.
 
-**Status: Konzept / Grundgerüst.** Interaktive Experimente sind hier noch nicht implementiert. Dieses Repository ist eine eigenständige, öffentlich teilbare Lernumgebung und wird unabhängig von den anderen Learning Labs entwickelt.
+**Stand:** Sechs unabhängige, interaktive Unterlabore, Version 0.1. Einstieg: [GitHub Pages](https://philippklinz.github.io/lab-human-origins/).
 
-## Warum dieses Labor?
+Das Labor ist eine Lernumgebung für die biologische und archäologische Vorgeschichte des Menschen. Es vermittelt nicht die angebliche lineare Entwicklung „vom Affen zum Menschen“, sondern fossil und genetisch rekonstruierbare, zeitweise nebeneinander existierende Homininenlinien.
 
-Homininen, Fossilien, Körpermerkmale, Werkzeugkulturen, Migrationen und genetische Verwandtschaft.
+## Sechs Lernmodule
 
-### Leitfragen
+| Modul | Interaktive Aufgabe | Wissenschaftliche Grenze |
+|---|---|---|
+| [01 · Zeitleiste & Arten](01_zeitleiste.html) | Acht beispielhafte fossile Taxa in 7 Millionen Jahren; Schieberegler für den Zeitpunkt, ausgewählte Art und zeitliche Überlappungen; Quiz | Fossilintervalle und taxonomische Zuordnung sind unsicher und nicht mit exakten Existenzperioden gleichzusetzen |
+| [02 · Stammbaum & Verwandtschaft](02_stammbaum.html) | Konzeptioneller Stammbaum, Evidenzlayer Fossilien, Genome und Genfluss, aktive Verwandtschaftsfrage | Kein vollständiger phylogenomischer Baum; keine gesicherte direkte Abstammungsfolge aller Taxa |
+| [03 · Aufrechter Gang](03_aufrechter_gang.html) | Laetoli-Fußspuren, Lucy und H. erectus vergleichen; Schrittzahl und Schrittlänge als Rechenmodell | Keine biomechanische Rekonstruktion der echten Fossilien; Schrittlängen sind frei gewählt |
+| [04 · Werkzeuge & Kultur](04_werkzeuge.html) | Lomekwi, Oldowan, Acheuléen und frühe Middle-Stone-Age-Kontexte; symbolische Artefaktgrafiken; Wissenstest | Keine Rekonstruktion echter Artefakte, keine eindeutige Artzuordnung zu Werkzeugen |
+| [05 · Ausbreitung & Genetik](05_ausbreitung.html) | Sieben Fundstellen, ausgewählte Lagebeziehungen und separate Genflusshinweise; Wissenstest | Schematische Karte ohne geografischen Maßstab, hypothetische Beziehungen statt nachgewiesener Einzelrouten |
+| [06 · Evidenzlabor](06_evidenz.html) | Sechs Befunde mit jeweils drei Antwortmöglichkeiten, Quellen und erläuterndem Feedback | Quellen- und Begriffsübung, keine direkte Durchführung der Untersuchungen |
 
-- Welche Homininen sind fossil belegt?
-- Wie rekonstruieren wir Verwandtschaft und Wanderungen?
-- Welche Erkenntnisse liefern Archäologie und Paläogenetik?
-- Wo sind die Grenzen unserer Rekonstruktionen?
+**Keine technische Kopplung** an Evolution, Molekularbiologie oder den Anthropology Atlas. Der Atlas behandelt historisch belegte Menschen und Ereignisse; LAB 05 die tiefe Vor- und Frühgeschichte aus Fossilien, Archäologie und Genetik.
 
-### Geplante Lernstationen
+## Methodik
 
-- Zeitleiste mit Fossilien, Datierungen und Fundorten
-- Vergleich von anatomischen Merkmalen und Werkzeugen
-- Karte verschiedener Migrationshypothesen mit Unsicherheiten
+- **Fund:** Fossil, Fußspur, Artefakt oder alte DNA sind erhaltene Belege.
+- **Datierung:** Ein Fossil kann anhand einer überlagernden Schicht ein **Mindestalter** erhalten, statt direkt datiert zu sein (Omo I).
+- **Interpretation:** Die Zuordnung zu einer Art, einer Funktion oder einer Abstammungslinie wird aus Befunden erschlossen.
+- **Unsicherheit:** Fossilien sind lückenhaft; Verbreitungs- und Aussterbedaten sind Mindestintervalle der bekannten Funde, keine exakten biologischen Grenzen.
+- **Keine Rangordnung:** Werkzeugherstellung, Gehirnform, Körpergröße, Gangart oder kulturelle Innovationen begründen keine biologische Höherwertigkeit.
 
-## Wissenschaftliche Sorgfalt
+## Wissenschaftliche Referenzen
 
-Keine lineare 'Affen-zu-Mensch'-Treppe, keine biologischen Werturteile. Unsichere Datierungen und wissenschaftlich umstrittene Zuordnungen kennzeichnen.
+- [Smithsonian Institution – Introduction to Human Evolution](https://humanorigins.si.edu/education/introduction-human-evolution)
+- [ASU Institute of Human Origins – Timeline](https://iho.asu.edu/accessible-timeline)
+- [Smithsonian – Laetoli Footprints](https://humanorigins.si.edu/evidence/behavior/footprints/laetoli-footprint-trails)
+- [Harmand et al., 2015 – 3.3 Ma stone tools from Lomekwi 3](https://www.nature.com/articles/nature14464)
+- [Richter et al., 2017 – Dating Jebel Irhoud](https://www.nature.com/articles/nature22335)
+- [Hublin et al., 2017 – Jebel Irhoud fossils](https://www.nature.com/articles/nature22336)
+- [Vidal et al., 2022 – Minimum age of Omo I](https://www.nature.com/articles/s41586-021-04275-8)
+- [Zhu et al., 2018 – Hominins on the Chinese Loess Plateau](https://www.nature.com/articles/s41586-018-0299-4)
+- [Groucutt et al., 2018 – Homo sapiens in Arabia](https://www.nature.com/articles/s41559-018-0518-2)
+- [Reich et al., 2010 – Ancient Denisovan genome](https://www.nature.com/articles/nature09710)
 
-Unser didaktisches Ziel: **beobachten → vermuten → experimentieren → erklären**. Wir trennen Modelle und Vereinfachungen von Messdaten, Belegen und offenen Hypothesen. Ein Einstieg ohne Vorwissen ist ausdrücklich vorgesehen.
+Jedes Unterlabor enthält spezifische Quellenangaben und erklärt, welche Zahlen nur **illustrative Modellwerte** sind.
 
-## Nutzung und Technik
+## Design, Technik und Tests
 
-Die [Startseite](index.html) ist eine eigenständige HTML-Datei und kann direkt im Browser geöffnet oder über GitHub Pages veröffentlicht werden.
-
-- Statisches HTML, CSS und JavaScript; bei Bedarf SVG, Canvas oder Three.js.
-- Keine zentrale Plattform, Datenbank, Registrierung oder Build-Pflicht.
-- Alle künftigen Lernstationen sind innerhalb **dieses Repositories** lauffähig.
-- Verweise auf andere Labore sind optional, nicht für die Funktion notwendig.
-- Gestalterische Richtung: **Modern Objectivity** (Arbeitsfassung), Graphit, warmes Off-White, Signal-Türkis `#009E98`.
-
-## Entwicklung
-
-Siehe [AGENTS.md](AGENTS.md) für Aufgaben, Designgrundsätze, Prüfpunkte und wissenschaftliche Leitplanken.
+- Statische HTML-, CSS-, JavaScript- und eigene SVG-Dateien ohne Backend, Tracking, Login, Laufzeit-CDNs oder fremde Bilder.
+- [Modern Objectivity](https://philippklinz.github.io/modern-objectivity-style/): `modern-objectivity.css` ist eine unveränderte lokale Kopie des Style Kits; `human.css` erweitert es responsiv.
+- `human-labs.js` implementiert Module 01–03; `human-labs-more.js` Module 04–06.
+- `tests/layout-check.mjs` prüft sieben Seiten bei zwölf Fenstergrößen (320–1600 px) in Chromium.
+- `tests/interactions-check.mjs` prüft alle sechs Experimente, Modellgrenzen und Antworten in Chromium.
+- Workflow [Human Origins laboratory checks](https://github.com/philippklinz/lab-human-origins/actions/workflows/lab-05-checks.yml).
+- Tests prüfen Darstellung und Funktion, **nicht** die fachliche Vollständigkeit der Forschungsquellen. Eine zusätzliche wissenschaftliche Fachreview bleibt sinnvoll.
 
 ## Lizenz
 
-[GNU General Public License v2.0](LICENSE) (GPL-2.0-only). Abweichende Lizenzen hinzugefügter Bibliotheken oder fremder Inhalte sind getrennt zu beachten.
+Eigene Projektdateien: [GNU GPL v2.0 only](LICENSE). Wissenschaftliche Facharbeiten werden verlinkt, nicht als kopierte Volltexte eingebunden.
 
-## Modern Objectivity style kit
-
-Die Gestaltung nutzt eine **lokale, unveränderte Kopie** des [Modern Objectivity Style Kits v0.1 (Draft)](https://philippklinz.github.io/modern-objectivity-style/) aus [`styles/modern-objectivity.css`](https://github.com/philippklinz/modern-objectivity-style/blob/main/styles/modern-objectivity.css), Quellstand `c6af71a8688b9001313d19a642e8f308fa463280` (GPL-2.0-only). Die eigenständige HTML-Seite definiert ihre spezifische Bühne über die semantischen `--mo-*`-Tokens. Keine externe Runtime oder CDN erforderlich.
+[AGENTS.md](AGENTS.md) legt verbindliche wissenschaftliche und technische Entwicklungsregeln fest.
