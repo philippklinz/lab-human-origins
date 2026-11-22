@@ -170,7 +170,7 @@ function walking(){
  }
  function proportions(erectus){
   // Both figures use identical shoulder/hip levels: only qualitative limb proportions differ.
-  const elbow=erectus?168:185,wrist=erectus?225:272,knee=erectus?307:280,ankle=erectus?398:346;
+  const elbow=erectus?168:181,wrist=erectus?238:252,knee=erectus?307:295,ankle=erectus?398:375;
   let art=feature('trunk',line('M68 109H397M68 219H397'));
   art+='<path class="walk-body" d="M210 93L205 109Q182 106 173 126L192 184L190 217Q230 237 270 217L268 184L287 126Q278 106 255 109L250 93Z"/><path class="walk-body" d="M207 69Q201 33 230 30Q259 33 253 69L246 91Q230 103 214 91Z"/>';
   art+=feature('trunk','<path class="walk-trunk" d="M230 110V219"/><path class="walk-measure" d="M349 109V219m-7-110h14m-14 110h14"/>'+label(367,157,'Rumpf'));
