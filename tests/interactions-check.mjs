@@ -73,6 +73,28 @@ try{
   await p.locator('#migration-routes').click();await p.locator('#migration-genes').click();
   await assert(p,()=>document.querySelector('#migration-routes').getAttribute('aria-pressed')==='true'&&document.querySelector('#migration-genes').getAttribute('aria-pressed')==='true','Layer toggles');
   await assert(p,()=>document.querySelectorAll('#migration-art [data-map-overlay]').length===2,'Both optional map overlays are rendered');
+  await assert(p,()=>{
+    const svg=document.querySelector('#migration-art');
+    const overlay=svg.querySelector('[data-map-overlay="genetic-exchange"]');
+    if(!overlay||overlay.querySelectorAll('[data-map-genetic-node]').length!==3)return false;
+    const relations=[...overlay.querySelectorAll('[data-map-relation]')];
+    if(relations.length!==2)return false;
+    const pt=(n)=>({x:Number(n.getAttribute('cx')),y:Number(n.getAttribute('cy'))});
+    return relations.every(path=>{
+      const a=overlay.querySelector('[data-map-genetic-node="'+path.dataset.from+'"]');
+      const b=overlay.querySelector('[data-map-genetic-node="'+path.dataset.to+'"]');
+      if(!a||!b)return false;
+      const s=path.getPointAtLength(0),e=path.getPointAtLength(path.getTotalLength());
+      const d=(p,q)=>Math.hypot(p.x-q.x,p.y-q.y);
+      return d(s,pt(a))<0.1 && d(e,pt(b))<0.1;
+    });
+  },'Genetic relationship arcs connect to named population nodes without floating endpoints');
+  await assert(p,()=>document.querySelector('#migration-art [data-map-overlay="genetic-exchange"]')?.textContent.includes('KEINE FUNDORTE'),'Geneflow concept is explicitly non-geographic');
+  await p.locator('#migration-genes').click();
+  await assert(p,()=>document.querySelectorAll('#migration-art [data-map-relation]').length===0,'Genetic overlay toggles off');
+  await p.locator('#migration-genes').click();
+  await assert(p,()=>document.querySelectorAll('#migration-art [data-map-relation]').length===2,'Genetic overlay toggles back on');
+
   await p.locator('#migration-quiz button').nth(2).click();
   await assert(p,()=>document.querySelector('#migration-quiz-feedback').dataset.ok==='true','Denisovan genetic exchange quiz');
  });

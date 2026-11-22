@@ -9,3 +9,5 @@
 **Site markers:** `human-labs-more.js` holds approximate real latitudes and longitudes; geographic projection is applied consistently. Neighbouring Lomekwi 3 / Omo I pins receive small display offsets, with leader lines to their true projected anchors.
 
 **Important:** These are **modern coastlines**, not an attempted reconstruction of Pliocene or Pleistocene geography. Optional migration relationships and genetic exchange are explicitly conceptual, not verified itineraries or geographic event coordinates. Natural Earth source data remain public domain independently of the project's GPL v2.0 code license.
+
+**Genetic-exchange overlay:** An independent labeled schematic inset inside the SVG shows Homo sapiens, Neanderthal and Denisova-related ancestral populations. Two orange curves connect **named population nodes**, not locations on the world map. The model expresses genome-supported admixture in the histories of these groups. It does **not** locate encounters, imply travel routes or represent a complete population graph.

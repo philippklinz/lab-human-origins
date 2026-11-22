@@ -95,12 +95,33 @@ function migrations(){
      graphic+='</g>';
    }
    if(showGenes){
-     // Symbolic motif over Eurasia. NOT coordinates of admixture events.
-     graphic+='<g data-map-overlay="genetic-exchange" fill="none" stroke="#e8b583"'+
-       ' stroke-width="3" stroke-dasharray="5 7" stroke-linecap="round">'+
-       '<path d="M650 165Q715 95 775 157"/><path d="M655 175Q717 105 781 165"/>'+
-       '</g><text x="770" y="92" text-anchor="middle" fill="#efc7a2" font-size="12"'+
-       ' font-family="Liberation Mono,monospace">GENFLUSS (SYMBOLISCH)</text>';
+     // An inset network, NOT georeferenced admixture events. Connections are
+     // anchored to three explicitly named ancestral population groups.
+     // Placing arbitrary arcs on Eurasia would falsely imply known encounter sites.
+     graphic+='<g data-map-overlay="genetic-exchange" pointer-events="none">'+
+       '<rect x="18" y="18" width="408" height="169" rx="8"'+
+       ' fill="#0c232b" fill-opacity=".97" stroke="#769f98" stroke-width="1.3"/>'+
+       '<text x="36" y="44" fill="#c4e8df" font-size="13" font-weight="700"'+
+       ' font-family="Liberation Mono,monospace">GENETISCHER AUSTAUSCH</text>'+
+       '<text x="36" y="63" fill="#9ebdb5" font-size="11"'+
+       ' font-family="Liberation Mono,monospace">SCHEMATISCHE LINIEN · KEINE FUNDORTE</text>'+
+       '<g fill="none" stroke="#e7b485" stroke-width="3.2" stroke-linecap="round">'+
+       '<path data-map-relation="sapiens-neanderthal" data-from="sapiens" data-to="neanderthal"'+
+       ' d="M100 124Q216 80 337 102"/>'+
+       '<path data-map-relation="sapiens-denisova" data-from="sapiens" data-to="denisova"'+
+       ' d="M100 124Q216 171 337 146"/>'+
+       '</g>'+
+       '<g fill="#d8ad83" stroke="#f7dfc2" stroke-width="2">'+
+       '<circle data-map-genetic-node="sapiens" cx="100" cy="124" r="10"/>'+
+       '<circle data-map-genetic-node="neanderthal" cx="337" cy="102" r="10"/>'+
+       '<circle data-map-genetic-node="denisova" cx="337" cy="146" r="10"/>'+
+       '</g>'+
+       '<g fill="#ecf1e9" font-family="Liberation Sans,Arial" font-size="13" text-anchor="middle">'+
+       '<text x="100" y="106">H. sapiens</text>'+
+       '<text x="337" y="86">Neandertaler</text>'+
+       '<text x="337" y="171">Denisova-Linie</text>'+
+       '</g>'+
+       '</g>';
    }
    // Closely neighbouring sites Omo I and Lomekwi use leader lines to make
    // both selectable while keeping the actual anchor positions unmodified.
@@ -150,7 +171,7 @@ function migrations(){
  }
  $('migration-routes').addEventListener('click',()=>{showRoutes=!showRoutes;render()});
  $('migration-genes').addEventListener('click',()=>{showGenes=!showGenes;render()});
- quiz('migration-quiz','migration-quiz-feedback','Alte Genome zeigen Genfluss zwischen Verwandtschaftslinien. Er beschreibt keine zielgerichtete Migration einzelner bekannter Personen.');
+ quiz('migration-quiz','migration-quiz-feedback','Alte Genome zeigen Genfluss zwischen Verwandtschaftslinien. Die orangefarbenen Verbindungen gehören zu einem separaten Populationsschema: Sie markieren keine geografischen Begegnungsorte oder Wanderwege.');
  render();
  window.HumanMigration=Object.freeze({
    siteCount:sites.length,project,
