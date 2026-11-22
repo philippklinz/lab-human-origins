@@ -41,8 +41,25 @@ try{
  });
  await check('03_aufrechter_gang.html',async p=>{
   await assert(p,()=>window.HumanGaitMath.distance(20,50)===10,'Distance math');
+  await assert(p,()=>[...document.querySelectorAll('[data-footstep]')].map(e=>e.dataset.side).join('')==='LRLR','Trackway alternates left and right contacts');
+  for(const state of ['laetoli','lucy','erectus']){
+   await p.locator('[data-walk="'+state+'"]').click();
+   await assert(p,()=>document.querySelectorAll('#walk-art svg[role="img"] title').length===2&&document.querySelectorAll('#walk-art svg desc').length===2,'Both diagrams have accessible explanations');
+   const details=p.locator('#walk-details button');
+   for(let i=0;i<await details.count();i++){
+    const button=details.nth(i),id=await button.getAttribute('data-detail');
+    await button.focus();await p.keyboard.press('Enter');
+    if(await button.getAttribute('aria-pressed')!=='true')throw new Error('Keyboard selection failed: '+state+'/'+id);
+    await assert(p,()=>{
+     const chosen=document.querySelector('#walk-details button[aria-pressed="true"]');
+     const active=[...document.querySelectorAll('#walk-art [data-walk-feature].is-active')];
+     return active.length>0&&active.every(e=>e.dataset.walkFeature===chosen.dataset.detail)&&document.querySelector('#walk-detail-text').textContent.length>40;
+    },'Selected explanation and highlighted anatomy stay in sync');
+   }
+  }
   await p.locator('[data-walk="lucy"]').click();
   await assert(p,()=>document.querySelector('#walk-name').textContent.includes('Lucy'),'Lucy evidence');
+  await assert(p,()=>document.querySelector('#walk-details button[aria-pressed="true"]').dataset.detail==='pelvis','Changing evidence resets the detail selection');
   await slide(p,'walk-steps','40');await slide(p,'walk-length','75');
   await assert(p,()=>document.querySelector('#walk-distance').textContent==='30,0 m','Editable stride times steps');
   await p.locator('[data-walk="erectus"]').click();

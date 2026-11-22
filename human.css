@@ -171,3 +171,61 @@ a{color:var(--mo-accent)}
 .ho-quiz-end{padding:20px;background:#e4f4ed;border-left:4px solid #128d7e;font-size:15px}
 @media(max-width:900px){.ho-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.ho-stack,.ho-info-grid,.ho-cards2{grid-template-columns:minmax(0,1fr)}.ho-list{grid-template-columns:minmax(0,1fr)}}
+
+/* Upright walking: paired teaching plates, with the same readable scale on small screens. */
+.walk-overview{padding:26px clamp(18px,3vw,36px) 23px}
+.walk-overview h3{line-height:1.25;font-size:clamp(24px,2.5vw,34px);margin:9px 0 12px}
+.walk-overview p{max-width:90ch;margin:0;font-size:15px}
+.walk-stage{background:#102832;color:#d6e9e4}
+.walk-stage>.ho-dark-head{border-bottom:1px solid #36545d;padding:16px 25px}
+.walk-visual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.walk-panel{min-width:0;margin:0;padding:24px clamp(12px,2.4vw,30px) 22px;display:flex;flex-direction:column}
+.walk-panel+.walk-panel{border-left:1px solid #36545d}
+.walk-panel header{padding:0 7px;min-height:96px}
+.walk-kicker{font:10px/1.5 var(--mo-mono);letter-spacing:.07em;color:#9ac9c0}
+.walk-panel h4{color:#f0f7f4;font-size:clamp(19px,2vw,24px);line-height:1.25;letter-spacing:-.02em;margin:9px 0 7px}
+.walk-panel header p{color:#b4cec9;font-size:13px;margin:0;line-height:1.5}
+.walk-panel svg{display:block;width:100%;max-width:520px;height:auto;aspect-ratio:460/440;align-self:center;margin:12px 0 6px;overflow:visible}
+.walk-panel figcaption{border-top:1px solid #36545d;padding:15px 7px 0;margin-top:auto;color:#b8d0ca;font-size:13px;line-height:1.65}
+.walk-panel figcaption strong{color:#edf7f4}
+.walk-note{margin:0;padding:17px 30px!important;border-top:1px solid #36545d;color:#b8d0ca!important;font-size:12px!important;line-height:1.65!important}
+.walk-guide{fill:none;stroke:#8bada9;stroke-width:1.5;stroke-dasharray:5 5}
+.walk-direction{fill:none;stroke:#d4e8e0;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.walk-measure{fill:none;stroke:#a2bdb5;stroke-width:1.5}
+.walk-bone,.walk-sole{fill:#376c68;stroke:#a0d9c7;stroke-width:2.4;stroke-linejoin:round}
+.walk-spine{fill:#466169;stroke:#9bb6b8}
+.walk-region{fill:#5e9b87;stroke:#b0dfcd;stroke-width:2}
+.walk-emphasis{fill:none;stroke:#a0d9c7;stroke-width:3}
+.walk-marker circle{fill:#b2d8cb;stroke:#102832;stroke-width:2}
+.walk-body{fill:#284750;stroke:#9bb6b8;stroke-width:2.5}
+.walk-limb{fill:none;stroke:#a0d9c7;stroke-width:16;stroke-linecap:round;stroke-linejoin:round}
+.walk-joint{fill:#102832;stroke:#a0d9c7;stroke-width:2}
+.walk-foot-line{fill:none;stroke:#a0d9c7;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+.walk-trunk{fill:none;stroke:#9bb6b8;stroke-width:5;stroke-dasharray:4 4}
+.is-active .walk-bone,.is-active .walk-region,.is-active .walk-marker circle{fill:#e9b880;stroke:#ffdbad}
+.is-active .walk-limb,.is-active .walk-emphasis,.is-active .walk-measure,.is-active .walk-guide,.is-active .walk-foot-line,.is-active .walk-trunk,.is-active .walk-direction{stroke:#f1bd86}
+.is-active .walk-joint{stroke:#f1bd86}
+.walk-inspect{padding:23px clamp(18px,3vw,36px);border-bottom:1px solid var(--ho-line)}
+.walk-inspect-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
+.walk-legend{font-size:12px;color:var(--ho-muted);display:inline-flex;align-items:center;gap:7px}
+.walk-legend i{display:block;width:12px;height:12px;background:#edb781;border:1px solid #9a6b3f;border-radius:50%}
+#walk-details{margin:14px 0}
+#walk-details button[aria-pressed=true]{background:#f8e5ce;color:#643e1d;border-color:#ae7847}
+.walk-detail{border-left:3px solid #b77b43;background:#fcf6ee;padding:14px 18px;min-height:98px;font-size:14px}
+.walk-detail p{margin:5px 0 0;max-width:105ch;font-size:14px}
+.walk-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:25px clamp(18px,3vw,36px) 0}
+.walk-evidence h4{font-size:17px;line-height:1.4;margin:8px 0}
+.walk-evidence p{margin:0;font-size:14px}
+.walk-source{padding:0 clamp(18px,3vw,36px);margin:20px 0 24px}
+@media(max-width:760px){
+ .walk-visual-grid,.walk-evidence{grid-template-columns:minmax(0,1fr)}
+ .walk-panel{padding:22px clamp(12px,4vw,30px)}
+ .walk-panel+.walk-panel{border-left:0;border-top:1px solid #36545d}
+ .walk-panel header{min-height:0}
+ .walk-panel h4{font-size:22px}
+ .walk-panel svg{max-width:460px}
+ .walk-evidence{gap:20px}
+ .walk-evidence>div+div{border-top:1px solid var(--ho-line);padding-top:20px}
+ .walk-note{padding:16px 19px!important}
+}
+@media(max-width:430px){#walk-details button{flex:1 1 auto}.walk-stage>.ho-dark-head{padding:14px 19px}}

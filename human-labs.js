@@ -117,28 +117,147 @@ function familyTree(){
  paint();
 }
 function walking(){
+ // Original teaching drawings: qualitative geometry, never tracings or fossil measurements.
+ // Each panel has its own viewBox so comparisons stack without shrinking labels on phones.
+ const label=(x,y,s,anchor='start')=>txt(x,y,s,18,'#d6e9e4',anchor);
+ const line=d=>'<path class="walk-guide" d="'+d+'"/>';
+ const feature=(id,art)=>'<g data-walk-feature="'+id+'">'+art+'</g>';
+ const badge=(x,y,n)=>'<g class="walk-marker"><circle cx="'+x+'" cy="'+y+'" r="13"/>'+txt(x,y+6,n,17,'#102832')+'</g>';
+ const panel=(id,kicker,title,subtitle,description,art,caption)=>
+  '<figure class="walk-panel"><header><span class="walk-kicker">'+kicker+'</span><h4>'+title+'</h4><p>'+subtitle+'</p></header>'+
+  '<svg viewBox="0 0 460 440" role="img" aria-labelledby="'+id+'-title '+id+'-desc"><title id="'+id+'-title">'+title+'</title><desc id="'+id+'-desc">'+description+'</desc>'+art+'</svg><figcaption>'+caption+'</figcaption></figure>';
+ // Left sole seen from above: the large toe is medial (on the right). Mirror for a right foot.
+ const sole='<path class="walk-sole" d="M43 46C24 43 12 64 13 88C13 111 24 129 26 145C27 157 22 169 30 182C38 195 59 195 68 182C78 168 67 150 64 135C61 118 79 103 80 82C81 63 64 47 43 46Z"/>';
+ function foot(detail=false){
+  return sole+feature('toe','<ellipse class="walk-bone" cx="73" cy="24" rx="13" ry="20"/>')+
+   '<g class="walk-bone"><ellipse cx="49" cy="24" rx="9" ry="15"/><ellipse cx="30" cy="29" rx="8" ry="13"/><ellipse cx="15" cy="39" rx="6" ry="10"/><ellipse cx="5" cy="52" rx="5" ry="8"/></g>'+
+   (detail?feature('heel','<path class="walk-region" d="M31 157Q46 145 65 157Q77 183 51 187Q27 188 31 157Z"/>')+
+    feature('arch','<path class="walk-emphasis" d="M76 101Q53 126 66 150" stroke-dasharray="4 4"/>'):'');
+ }
+ function trackway(){
+  let art=line('M225 56V403')+'<path class="walk-direction" d="M53 365V91m-8 12 8-12 8 12"/>'+label(31,57,'Gehrichtung');
+  const prints=[{x:135,y:302,side:'L'},{x:262,y:215,side:'R'},{x:135,y:128,side:'L'},{x:262,y:41,side:'R'}];
+  prints.forEach((p,i)=>{
+   art+='<g data-footstep="'+(i+1)+'" data-side="'+p.side+'" transform="translate('+p.x+' '+p.y+') scale(.5)">'+(p.side==='R'?'<g transform="translate(85 0) scale(-1 1)">':'<g>')+foot()+'</g></g>';
+   art+=label(p.side==='L'?122:315,p.y+64,(i+1)+' · '+p.side,p.side==='L'?'end':'start');
+  });
+  art+='<path class="walk-measure" d="M280 310H383M160 397H383M375 310V397m-7-87h14m-14 87h14"/>'+label(392,348,'Ein')+label(392,371,'Schritt');
+  return art;
+ }
+ function footprint(){
+  return '<g transform="translate(66 49) scale(1.72)">'+foot(true)+'</g>'+
+   feature('toe',line('M202 89H246V82H271')+badge(283,82,'2')+label(305,88,'Großzehe'))+
+   feature('arch',line('M184 264H249V230H271')+badge(283,230,'3')+label(305,236,'Innenrand'))+
+   feature('heel',line('M165 349H271')+badge(283,349,'1')+label(305,355,'Ferse'));
+ }
+ function pelvis(afarensis){
+  // Anterior view. Femoral heads articulate medially; shafts converge toward the knees.
+  const wing=afarensis?
+   'M220 139C200 114 163 91 113 103Q85 114 105 151L142 187Q130 213 149 239Q175 262 220 233L224 211Q188 211 183 192Q192 167 220 160Z':
+   'M221 165Q210 139 210 92Q203 63 179 76Q153 105 163 157L181 208Q159 235 181 262Q205 275 224 240L224 218Q202 215 200 197Z';
+  const hole=afarensis?'M166 209Q150 220 164 239Q188 245 207 227Q189 211 166 209Z':'M193 226Q179 235 191 251Q209 255 216 237Z';
+  let art=line('M230 26V403')+label(230,30,'Körpermitte','middle');
+  art+='<g class="walk-bone walk-spine"><rect x="216" y="48" width="28" height="16" rx="4"/><rect x="214" y="69" width="32" height="16" rx="4"/><rect x="212" y="90" width="36" height="16" rx="4"/></g>';
+  art+=feature('pelvis','<g class="walk-bone"><path d="'+wing+' '+hole+'" fill-rule="evenodd"/><path transform="translate(460 0) scale(-1 1)" d="'+wing+' '+hole+'" fill-rule="evenodd"/><path d="M211 119Q230 111 249 119L242 166L230 181L218 166Z"/></g>');
+  const hip=afarensis?151:187,shaft=afarensis?128:169,knee=afarensis?185:166,hy=afarensis?198:218;
+  const bone='M'+hip+' '+hy+'L'+shaft+' '+(hy+19)+'L'+knee+' 357';
+  art+=feature('knee','<g class="walk-limb"><path d="'+bone+'"/><path transform="translate(460 0) scale(-1 1)" d="'+bone+'"/></g><g class="walk-bone"><circle cx="'+hip+'" cy="'+hy+'" r="13"/><circle cx="'+(460-hip)+'" cy="'+hy+'" r="13"/><ellipse cx="'+knee+'" cy="363" rx="18" ry="11"/><ellipse cx="'+(460-knee)+'" cy="363" rx="18" ry="11"/></g>');
+  art+=feature('pelvis','<path class="walk-measure" d="M77 '+(afarensis?'105V164m-6-59h12m-12 59h12':'78V204m-6-126h12m-12 126h12')+'"/>'+badge(57,afarensis?134:140,'1'));
+  art+=feature('knee',line('M'+(knee-23)+' 363H91')+badge(77,363,'2')+label(27,400,'Knie'));
+  art+=label(333,300,'Ober-')+label(333,322,'schenkel')+line('M326 312H'+(460-knee+9));
+  if(afarensis)art+=feature('knee','<path class="walk-direction" d="M125 335H157m-9-7 9 7-9 7M335 335H303m9-7-9 7 9 7"/>');
+  return art;
+ }
+ function proportions(erectus){
+  // Both figures use identical shoulder/hip levels: only qualitative limb proportions differ.
+  const elbow=erectus?168:185,wrist=erectus?225:272,knee=erectus?307:280,ankle=erectus?398:346;
+  let art=feature('trunk',line('M68 109H397M68 219H397'));
+  art+='<path class="walk-body" d="M210 93L205 109Q182 106 173 126L192 184L190 217Q230 237 270 217L268 184L287 126Q278 106 255 109L250 93Z"/><path class="walk-body" d="M207 69Q201 33 230 30Q259 33 253 69L246 91Q230 103 214 91Z"/>';
+  art+=feature('trunk','<path class="walk-trunk" d="M230 110V219"/><path class="walk-measure" d="M349 109V219m-7-110h14m-14 110h14"/>'+label(367,157,'Rumpf'));
+  art+=feature('arms','<g class="walk-limb"><path d="M181 122L158 '+elbow+'L146 '+wrist+'M279 122L302 '+elbow+'L314 '+wrist+'"/></g><g class="walk-joint"><circle cx="158" cy="'+elbow+'" r="6"/><circle cx="302" cy="'+elbow+'" r="6"/></g><path class="walk-measure" d="M110 122V'+wrist+'m-7 0h14M103 122h14"/>'+badge(91,151,'1')+label(43,182,'Arme'));
+  art+=feature('legs','<g class="walk-limb"><path d="M206 220L204 '+knee+'L198 '+ankle+'M254 220L256 '+knee+'L262 '+ankle+'"/></g><g class="walk-joint"><circle cx="204" cy="'+knee+'" r="6"/><circle cx="256" cy="'+knee+'" r="6"/></g><path class="walk-foot-line" d="M198 '+ankle+'l-17 9h22M262 '+ankle+'l17 9h-22"/><path class="walk-measure" d="M350 225V'+ankle+'m-7 0h14M343 225h14"/>'+badge(374,280,'2')+label(367,312,'Beine'));
+  return art;
+ }
  const cases={
- laetoli:{name:'Laetoli-Fußspuren',date:'CA. 3,6 MILLIONEN JAHRE',desc:'In vulkanischer Asche erhaltene Fußspuren zeigen, dass frühe Homininen auf zwei Beinen gingen – lange bevor unsere Art Homo sapiens entstand.',fact:'Abrollmuster und die Ausrichtung der großen Zehe liefern Hinweise auf eine zweibeinige Gangweise.',limit:'Die genaue Identität aller Spurenverursacher lässt sich nicht aus dem Abdruck allein beweisen. Eine Zuschreibung zu A. afarensis ist plausibel, bleibt aber eine wissenschaftliche Zuordnung.',source:'https://humanorigins.si.edu/evidence/behavior/footprints/laetoli-footprint-trails',
- art:'<g fill="#4f958b" stroke="#a8ded0" stroke-width="3">'+[0,1,2,3].map((_,i)=>{let x=164+(i%2)*175,y=85+Math.floor(i/2)*128;return '<ellipse cx="'+x+'" cy="'+y+'" rx="34" ry="49" transform="rotate('+(i%2?17:-17)+' '+x+' '+y+')"/><circle cx="'+(x+15)+'" cy="'+(y-42)+'" r="14"/>'}).join('')+'</g>'},
- lucy:{name:'Lucy und Australopithecus afarensis',date:'CA. 3,2 MILLIONEN JAHRE',desc:'Das Teilskelett AL 288-1 („Lucy“) liefert wichtige Informationen zur Beckenform, Knie- und Beinmechanik eines frühen Homininen.',fact:'Anatomische Merkmale weisen auf habituelle Zweibeinigkeit hin. Gleichzeitig zeigen andere Skelettmerkmale eine Kombination verschiedener Fortbewegungsmöglichkeiten.',limit:'Eine fossile Beckenform erlaubt keine direkte Messung von Muskelkräften, Ganggeschwindigkeit oder sämtlichen Alltagsbewegungen.',source:'https://humanorigins.si.edu/evidence/human-fossils/species/australopithecus-afarensis',
- art:'<path d="M267 66L326 66L361 130L327 168L275 168L240 130Z" fill="#608b83" stroke="#c4e0d0" stroke-width="6"/><path d="M275 169L238 253M327 169L359 253" stroke="#e2bd91" stroke-width="16" stroke-linecap="round"/><circle cx="293" cy="129" r="20" fill="#163941" stroke="#e0d4aa" stroke-width="3"/>'+txt(295,296,'SCHEMATISCHES BECKEN UND BEINE',12)},
- erectus:{name:'Homo erectus: Körperproportionen',date:'AB ETWA 1,9 MILLIONEN JAHREN',desc:'Einige frühe Homo-erectus-Fossilien zeigen im Verhältnis zum Rumpf längere Beine und kürzere Arme als viele frühere Homininen.',fact:'Beinknochen und rekonstruierte Körperproportionen lassen sich mit heutigen Körperbauvariationen vergleichen.',limit:'Das ist keine exakte Rekonstruktion eines einzelnen Ganges und bedeutet nicht, dass alle Individuen dieselben Körperproportionen hatten.',source:'https://humanorigins.si.edu/evidence/human-fossils/species/homo-erectus',
- art:'<circle cx="296" cy="77" r="32" stroke="#b6d9cc" stroke-width="7" fill="#315e62"/><path d="M274 114L256 198M318 114L335 198M296 114L296 202M295 200L258 287M295 200L334 287" stroke="#9ad4bd" stroke-width="15" stroke-linecap="round" fill="none"/>'+txt(452,180,'RELATIVE',14)+txt(452,200,'PROPORTIONEN',13)}
+  laetoli:{name:'Laetoli: Wie wird aus Abdrücken eine Gangspur?',date:'VOR CA. 3,6 MILLIONEN JAHREN',
+   desc:'In Laetoli, Tansania, blieben Fußspuren in vulkanischer Asche erhalten. Ihre Form und Anordnung zeigen: Hier gingen frühe Homininen auf zwei Beinen.',
+   fact:'Linke und rechte Fußabdrücke folgen aufeinander. Ferse und eine nach vorn gerichtete Großzehe sind erkennbar.',
+   inference:'Die Spuren belegen zweibeiniges Gehen. Aus Form und Tiefe der Abdrücke wird erschlossen, wie der Fuß belastet wurde.',
+   limit:'Die Spur verrät nicht sicher die Art. Die Zuordnung zu Australopithecus afarensis ist plausibel. Fußgewölbe und genaue Gangmechanik werden unterschiedlich rekonstruiert.',
+   source:'https://humanorigins.si.edu/evidence/behavior/footprints/laetoli-footprint-trails',sourceName:'Smithsonian · Laetoli-Fußspuren',
+   note:'Lehrschema einer einzelnen Schrittfolge, keine Kopie der Laetoli-Spur. Form, Abstände und Abdrucktiefe sind nicht vermessen.',
+   art:()=>panel('walk-trail','A / DRAUFSICHT','Links, rechts, links, rechts','L = linker Fuß · R = rechter Fuß',
+    'Vier abwechselnde linke und rechte Abdrücke, von unten nach oben als 1 bis 4 nummeriert. Die großen Zehen liegen jeweils zur Körpermitte. Die Klammer verbindet zwei aufeinanderfolgende Fersenpositionen in Gehrichtung.',trackway(),
+    '<strong>Von unten nach oben lesen.</strong> Ein Schritt reicht von einem Fußkontakt zum nächsten des anderen Fußes. Vier Abdrücke begrenzen drei Schrittintervalle.')+
+    panel('walk-print','B / VERGRÖSSERTES LEHRSCHEMA','Was steckt in einem Abdruck?','Linker Fuß · Zehen zeigen nach oben',
+    'Ein linker Fußabdruck mit fünf Zehen. Drei beschriftete Merkmale: Ferse, nach vorn gerichtete Großzehe und eingezogener Fußinnenrand. Der Innenrand ist gestrichelt, weil er keine exakte Rekonstruktion des fossilen Gewölbes darstellt.',footprint(),
+    '<strong>Form ist ein Hinweis auf Funktion.</strong> Die Farbmarkierung zeigt das unten ausgewählte Merkmal; sie stellt keinen gemessenen Druck dar.'),
+   details:[
+    {id:'heel',label:'1 · Ferse',text:'Der hintere Abdruck gehört zur Ferse. Zusammen mit dem Vorfuß hilft er zu erschließen, wie sich die Belastung während eines Schritts verlagert. Eine gemessene Druckverteilung zeigt dieses Schema nicht.'},
+    {id:'toe',label:'2 · Großzehe',text:'Die Großzehe liegt neben den anderen Zehen und zeigt nach vorn. Sie ist nicht seitlich abgespreizt wie eine Greifzehe. Bei linkem und rechtem Fuß liegt sie jeweils innen.'},
+    {id:'arch',label:'3 · Innenrand',text:'Die Einbuchtung markiert, wo das Fußlängsgewölbe den Bodenkontakt beeinflussen kann. Wie stark dieses Gewölbe bei den Laetoli-Verursachern ausgeprägt war, ist umstritten. Der gestrichelte Rand ist deshalb nur ein Orientierungsschema.'}
+   ]},
+  lucy:{name:'Lucy: Was verraten Becken und Oberschenkel?',date:'LUCY · VOR CA. 3,2 MILLIONEN JAHREN',
+   desc:'Lucy ist ein Teilskelett der Art Australopithecus afarensis. Der Vergleich zeigt zwei anatomische Merkmale, die regelmäßiges Gehen auf zwei Beinen ermöglichen.',
+   fact:'Das Becken ist kurz und breit. Die Oberschenkel sind zum Knie hin nach innen geneigt.',
+   inference:'Diese Kombination unterstützt die aufrechte Körperhaltung und bringt die Knie näher unter den Körper. Das hilft, beim Gehen auf einem Bein zu balancieren.',
+   limit:'Dies ist ein ergänztes anatomisches Lehrschema, kein Bild der erhaltenen Lucy-Knochen. Es zeigt weder genaue Gelenkwinkel noch Muskelkräfte; auch Klettern gehörte zum Bewegungsrepertoire von A. afarensis.',
+   source:'https://iho.asu.edu/node/15',sourceName:'ASU · Lucy und ihre Anatomie',
+   note:'Vorderansicht, stark vereinfacht und ohne gemeinsamen Größenmaßstab. Der heutige Schimpanse ist ein Vergleich, kein dargestellter Vorfahr.',
+   art:()=>panel('walk-chimp','A / HEUTIGER VERGLEICH','Schimpanse','Hohes, schmales Becken',
+    'Schematische Vorderansicht eines Schimpansenbeckens mit hohen, schmalen Beckenschaufeln und vergleichsweise geraden Oberschenkeln. Die gestrichelte Linie zeigt die Körpermitte.',pelvis(false),
+    'Schimpansen können zeitweise auf zwei Beinen gehen. Ihr Körperbau unterscheidet sich aber von dem eines regelmäßigen Zweibeiners.')+
+    panel('walk-lucy','B / FRÜHER HOMININE','Australopithecus afarensis','Lucys Art · kurzes, breites Becken',
+    'Schematische Vorderansicht eines kurzen, breiten Beckens. Die Oberschenkelschäfte neigen sich von der Hüfte zu den Knien nach innen. Pfeile betonen, dass die Knie näher zur Körpermitte liegen.',pelvis(true),
+    '<strong>Auf die Knie achten:</strong> Die Oberschenkel laufen nach innen. So liegen die Knie näher unter dem Körper.'),
+   details:[
+    {id:'pelvis',label:'1 · Beckenform',text:'Das Becken verbindet Rumpf und Beine. Kurze, breite Beckenschaufeln verändern auch die Lage der Gesäßmuskeln. Diese helfen, das Becken in der Einbeinphase eines Schritts zu stabilisieren.'},
+    {id:'knee',label:'2 · Oberschenkel & Knie',text:'Folge dem Knochen von der Hüfte zum Knie: Bei A. afarensis verläuft er nach innen. Die Knie stehen dadurch näher unter der Körpermitte. Fachlich heißt diese Neigung Valguswinkel; die Zeichnung zeigt keinen Messwert.'}
+   ]},
+  erectus:{name:'Körperproportionen: Was ist relativ länger?',date:'FRÜHER HOMO ERECTUS · AB CA. 1,9 MILLIONEN JAHREN',
+   desc:'Hier wird das Verhältnis von Armen und Beinen zum Rumpf verglichen. Beide Figuren haben in der Zeichnung dieselbe Rumpflänge – ihre tatsächliche Körpergröße wird nicht dargestellt.',
+   fact:'Frühe afrikanische Homo-erectus-Fossilien zeigen relativ zum Rumpf längere Beine und kürzere Arme als Australopithecus afarensis.',
+   inference:'Diese Proportionen passen zu ausdauernder Fortbewegung am Boden. Zweibeinigkeit bestand schon bei früheren Homininen.',
+   limit:'Die Figuren verdeutlichen qualitative Unterschiede, keine gemessenen Längenverhältnisse einzelner Fossilien. Daraus lässt sich keine konkrete Schrittlänge oder Geschwindigkeit berechnen.',
+   source:'https://humanorigins.si.edu/evidence/human-fossils/species/homo-erectus',sourceName:'Smithsonian · Homo erectus',
+   note:'Auf gleiche Rumpflänge normiert. Keine Zentimeterskala, keine Größenrekonstruktion und keine behauptete direkte Abstammungsfolge.',
+   art:()=>panel('walk-af-proportions','A / VERGLEICH DER VERHÄLTNISSE','Australopithecus afarensis','Relativ längere Arme, kürzere Beine',
+    'Frontale Schemafigur mit relativ langen Armen und kurzen Beinen. Schulterlinie und Hüftlinie begrenzen denselben Rumpfabschnitt wie bei der Vergleichsfigur. Klammern kennzeichnen Arm- und Beinabschnitte.',proportions(false),
+    'Bereits zweibeinig. Lange Arme und weitere Skelettmerkmale passen zugleich zum Klettern.')+
+    panel('walk-he-proportions','B / VERGLEICH DER VERHÄLTNISSE','Früher Homo erectus','Relativ kürzere Arme, längere Beine',
+    'Frontale Schemafigur mit derselben gezeichneten Rumpflänge, aber relativ kürzeren Armen und längeren Beinen. Die Klammern sind Vergleichshilfen ohne Zahlenmaßstab.',proportions(true),
+    '<strong>Vergleiche jeweils mit dem Rumpf.</strong> Es geht um Längenverhältnisse, nicht um die absolute Größe.'),
+   details:[
+    {id:'arms',label:'1 · Arme vergleichen',text:'Die Armabschnitte sind von der Schulter bis zum Handgelenk markiert. Bei gleicher gezeichneter Rumpflänge reichen die Arme von A. afarensis weiter hinab. Das zeigt den relativen Unterschied, keine Fossilmessung.'},
+    {id:'legs',label:'2 · Beine vergleichen',text:'Die Beinabschnitte sind von der Hüfte bis zum Sprunggelenk markiert. Relativ längere Beine ermöglichen grundsätzlich längere Schritte. Wie groß ein konkreter Schritt war, bleibt mit diesen Zeichnungen offen.'},
+    {id:'trunk',label:'Bezugsgröße · Rumpf',text:'Die gestrichelten Linien liegen auf Schulter- und Hüfthöhe. Dieser Rumpfabschnitt ist in beiden Figuren gleich lang gezeichnet. Erst dieser gemeinsame Bezug macht „relativ länger“ und „relativ kürzer“ sichtbar.'}
+   ]}
  };
- const buttons=[...document.querySelectorAll('[data-walk]')];let selected='laetoli';
+ const buttons=[...document.querySelectorAll('[data-walk]')];let selected='laetoli',focused='heel';
+ function focusDetail(){
+  const detail=cases[selected].details.find(d=>d.id===focused);
+  $('walk-art').querySelectorAll('[data-walk-feature]').forEach(el=>el.classList.toggle('is-active',el.dataset.walkFeature===focused));
+  $('walk-details').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.detail===focused)));
+  say('walk-detail-title',detail.label);say('walk-detail-text',detail.text);
+ }
  function render(){
   const item=cases[selected];say('walk-name',item.name);say('walk-date',item.date);
-  say('walk-text',item.desc);say('walk-fact',item.fact);say('walk-limit',item.limit);
-  $('walk-source').href=item.source;
-  $('walk-art').innerHTML='<rect width="640" height="340" fill="#102832"/>'+item.art;
-  $('walk-art').setAttribute('aria-label','Schematische Illustration zu '+item.name);
+  say('walk-text',item.desc);say('walk-fact',item.fact);say('walk-inference',item.inference);say('walk-limit',item.limit);say('walk-note',item.note);
+  $('walk-source').href=item.source;say('walk-source',item.sourceName+' ↗');
+  $('walk-art').innerHTML=item.art();
+  $('walk-details').replaceChildren(...item.details.map(d=>{
+   const button=document.createElement('button');button.type='button';button.className='ho-button';button.dataset.detail=d.id;
+   button.textContent=d.label;button.setAttribute('aria-controls','walk-detail');button.setAttribute('aria-pressed',String(d.id===focused));
+   button.addEventListener('click',()=>{focused=d.id;focusDetail()});return button;
+  }));
+  focusDetail();
   buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.walk===selected)));
  }
  function measure(){
   const steps=Number($('walk-steps').value),cm=Number($('walk-length').value);
   say('walk-steps-val',steps);say('walk-length-val',cm+' cm');say('walk-distance',fmt(steps*cm/100)+' m');say('walk-number',steps);say('walk-cm',cm+' cm');
  }
- buttons.forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.walk;render()}));
+ buttons.forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.walk;focused=cases[selected].details[0].id;render()}));
  for(const id of ['walk-steps','walk-length'])$(id).addEventListener('input',measure);
  window.HumanGaitMath=Object.freeze({distance:(steps,cm)=>steps*cm/100});
  render();measure();
