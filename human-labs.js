@@ -214,7 +214,7 @@ function walking(){
     {id:'pelvis',label:'1 · Beckenform',text:'Das Becken verbindet Rumpf und Beine. Kurze, breite Beckenschaufeln verändern auch die Lage der Gesäßmuskeln. Diese helfen, das Becken in der Einbeinphase eines Schritts zu stabilisieren.'},
     {id:'knee',label:'2 · Oberschenkel & Knie',text:'Folge dem Knochen von der Hüfte zum Knie: Bei A. afarensis verläuft er nach innen. Die Knie stehen dadurch näher unter der Körpermitte. Fachlich heißt diese Neigung Valguswinkel; die Zeichnung zeigt keinen Messwert.'}
    ]},
-  erectus:{name:'Körperproportionen: Was ist relativ länger?',date:'FRÜHER HOMO ERECTUS · AB CA. 1,9 MILLIONEN JAHREN',
+  erectus:{name:'Homo erectus: Arme und Beine im Vergleich',date:'FRÜHER HOMO ERECTUS · AB CA. 1,9 MILLIONEN JAHREN',
    desc:'Hier wird das Verhältnis von Armen und Beinen zum Rumpf verglichen. Beide Figuren haben in der Zeichnung dieselbe Rumpflänge – ihre tatsächliche Körpergröße wird nicht dargestellt.',
    fact:'Frühe afrikanische Homo-erectus-Fossilien zeigen relativ zum Rumpf längere Beine und kürzere Arme als Australopithecus afarensis.',
    inference:'Diese Proportionen passen zu ausdauernder Fortbewegung am Boden. Zweibeinigkeit bestand schon bei früheren Homininen.',
