@@ -1,0 +1,40 @@
+name: Human Origins laboratory checks
+
+on:
+  push:
+    paths:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - 'tests/**'
+      - '.github/workflows/lab-05-checks.yml'
+  pull_request:
+    paths:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - 'tests/**'
+      - '.github/workflows/lab-05-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    name: Chromium / responsive and interactive QA
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test-only browser dependencies
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Validate responsive layout on every HTML page
+        run: node tests/layout-check.mjs
+      - name: Validate six interactive learning modules
+        run: node tests/interactions-check.mjs
