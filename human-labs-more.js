@@ -126,12 +126,12 @@ function migrations(){
    const labelWidth=Math.max(100,Math.min(210,22+s.name.length*8));
    const lx=mx+labelWidth+23<950?mx+18:mx-labelWidth-18;
    const ly=Math.max(24,my-47);
-   graphic+='<path d="M'+asNumber(mx)+' '+asNumber(my)+'L'+asNumber(lx+5)+' '+
+   graphic+='<g pointer-events="none"><path d="M'+asNumber(mx)+' '+asNumber(my)+'L'+asNumber(lx+5)+' '+
      asNumber(ly+17)+'" stroke="#f0c9a0" stroke-width="1.2" fill="none"/>'+
      '<rect x="'+asNumber(lx)+'" y="'+asNumber(ly)+'" width="'+labelWidth+
      '" height="28" rx="4" fill="#e7f1ed" stroke="#d2dcd4"/>'+
      '<text x="'+asNumber(lx+10)+'" y="'+asNumber(ly+19)+'"'+
-     ' font-family="Liberation Sans,Arial" font-weight="700" font-size="13" fill="#14333a">'+s.name+'</text>';
+     ' font-family="Liberation Sans,Arial" font-weight="700" font-size="13" fill="#14333a">'+s.name+'</text></g>';
    graphic+='<text x="18" y="461" fill="#b9d7cc" font-family="Liberation Mono,monospace" font-size="11">'+
      'HEUTIGE KÜSTENLINIEN / NATURAL EARTH · PUBLIC DOMAIN</text>';
    $('migration-art').innerHTML=graphic;
