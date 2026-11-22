@@ -23,7 +23,7 @@ Homininen, Fossilien, Körpermerkmale, Werkzeugkulturen, Migrationen und genetis
 - **02** `02_stammbaum.html` – conceptual kinship tree, toggleable fossil/genome/admixture layers and active inference quiz. Never depict exact direct ancestry for unestablished edges.
 - **03** `03_aufrechter_gang.html` – footprint/skeleton evidence and a basic abstract distance calculation (step count × model step length), NOT biomechanical simulation.
 - **04** `04_werkzeuge.html` – early archaeology evidence from Lomekwi, Oldowan, Acheulean, Middle Stone Age, with symbolic drawings and chronology quiz.
-- **05** `05_ausbreitung.html` – seven source-grounded archaeological/genetic sites on a deliberately symbolic map. Relationship lines do NOT establish actual migration routes.
+- **05** `05_ausbreitung.html` – seven source-grounded archaeological/genetic sites using a locally vendored Natural Earth 1:110m world map with projected approximate geolocations. Optional lines do NOT establish actual migration routes.
 - **06** `06_evidenz.html` – six evidence comprehension questions on primary fossil, stone tool, dating and paleogenomic studies.
 
 The landing page contains six active cards, the modules 01–03 use `human-labs.js` and modules 04–06 use `human-labs-more.js`. All pages load `human.css` and the unchanged vendored `modern-objectivity.css`.
@@ -85,7 +85,7 @@ Use the **locally vendored** `modern-objectivity.css` (the v0.1 draft [practical
 - Lomekwi (~3.3 Ma) shows early lithic technology; assignment to Homo is unproven. Archaeological tool types are NOT the species of their makers.
 - Fossil occurrences and age ranges do NOT establish actual extinction years. In `01_zeitleiste.html` the tiny Ardipithecus span is explicitly an illustrative placeholder around 4.4 Ma, not a measured species duration.
 - `03_aufrechter_gang.html`: model distance = user step number × user step length / 100 (metres). This is not gait biomechanics, a measured trail, or a fossil-derived speed estimate.
-- `05_ausbreitung.html`: all site coordinates and continent outlines are schematic. Dashed lines express only broad possible connections, **never verified paths**. DNA introgression is not an exact individual journey.
+- `05_ausbreitung.html`: real present-day land coastline outlines are from Natural Earth (Public Domain); points are approximate WGS84 lat/lon projected onto 960×480 equirectangular SVG. Lomekwi and Omo display pins use small leader-line offsets for clickability. Dashed lines express only speculative geographic connections, **never verified paths**. This is NOT palaeogeography. DNA introgression is not an exact individual journey.
 - Ancient Denisova/Neanderthal genomes support related population histories and introgression; they do not yield a complete genotyped genealogy of all extinct hominins.
 - Do not use claims of cultural or biological superiority in population comparisons.
 

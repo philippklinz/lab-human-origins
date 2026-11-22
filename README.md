@@ -14,7 +14,7 @@ Das Labor ist eine Lernumgebung für die biologische und archäologische Vorgesc
 | [02 · Stammbaum & Verwandtschaft](02_stammbaum.html) | Konzeptioneller Stammbaum, Evidenzlayer Fossilien, Genome und Genfluss, aktive Verwandtschaftsfrage | Kein vollständiger phylogenomischer Baum; keine gesicherte direkte Abstammungsfolge aller Taxa |
 | [03 · Aufrechter Gang](03_aufrechter_gang.html) | Laetoli-Fußspuren, Lucy und H. erectus vergleichen; Schrittzahl und Schrittlänge als Rechenmodell | Keine biomechanische Rekonstruktion der echten Fossilien; Schrittlängen sind frei gewählt |
 | [04 · Werkzeuge & Kultur](04_werkzeuge.html) | Lomekwi, Oldowan, Acheuléen und frühe Middle-Stone-Age-Kontexte; symbolische Artefaktgrafiken; Wissenstest | Keine Rekonstruktion echter Artefakte, keine eindeutige Artzuordnung zu Werkzeugen |
-| [05 · Ausbreitung & Genetik](05_ausbreitung.html) | Sieben Fundstellen, ausgewählte Lagebeziehungen und separate Genflusshinweise; Wissenstest | Schematische Karte ohne geografischen Maßstab, hypothetische Beziehungen statt nachgewiesener Einzelrouten |
+| [05 · Ausbreitung & Genetik](05_ausbreitung.html) | Sieben Fundstellen, ausgewählte Lagebeziehungen und separate Genflusshinweise; Wissenstest | Natural-Earth-Küstenlinien (Public Domain), geografische Koordinaten und Näherungspositionen; hypoth. Beziehungen statt nachgewiesener Reiserouten |
 | [06 · Evidenzlabor](06_evidenz.html) | Sechs Befunde mit jeweils drei Antwortmöglichkeiten, Quellen und erläuterndem Feedback | Quellen- und Begriffsübung, keine direkte Durchführung der Untersuchungen |
 
 **Keine technische Kopplung** an Evolution, Molekularbiologie oder den Anthropology Atlas. Der Atlas behandelt historisch belegte Menschen und Ereignisse; LAB 05 die tiefe Vor- und Frühgeschichte aus Fossilien, Archäologie und Genetik.
@@ -44,9 +44,10 @@ Jedes Unterlabor enthält spezifische Quellenangaben und erklärt, welche Zahlen
 
 ## Design, Technik und Tests
 
-- Statische HTML-, CSS-, JavaScript- und eigene SVG-Dateien ohne Backend, Tracking, Login, Laufzeit-CDNs oder fremde Bilder.
+- Statische HTML-, CSS-, JavaScript- und SVG-Dateien ohne Backend, Tracking, Login oder Laufzeit-CDNs. Die Weltkarte wird lokal aus gemeinfreien Natural-Earth-Geodaten geladen.
 - [Modern Objectivity](https://philippklinz.github.io/modern-objectivity-style/): `modern-objectivity.css` ist eine unveränderte lokale Kopie des Style Kits; `human.css` erweitert es responsiv.
 - `human-labs.js` implementiert Module 01–03; `human-labs-more.js` Module 04–06.
+- `assets/world-natural-earth-110m.svg`: lokal eingebundene, aus Natural Earth 1:110m erzeugte Weltkarte. Die **Public-Domain**-Geometrie ist keine CC-BY-Datei; [Quellen- und Lizenzdokumentation](assets/README.md). Die Darstellung verwendet die heutigen Küstenlinien, nicht prähistorische Landformen.
 - `tests/layout-check.mjs` prüft sieben Seiten bei zwölf Fenstergrößen (320–1600 px) in Chromium.
 - `tests/interactions-check.mjs` prüft alle sechs Experimente, Modellgrenzen und Antworten in Chromium.
 - Workflow [Human Origins laboratory checks](https://github.com/philippklinz/lab-human-origins/actions/workflows/lab-05-checks.yml).
@@ -54,6 +55,6 @@ Jedes Unterlabor enthält spezifische Quellenangaben und erklärt, welche Zahlen
 
 ## Lizenz
 
-Eigene Projektdateien: [GNU GPL v2.0 only](LICENSE). Wissenschaftliche Facharbeiten werden verlinkt, nicht als kopierte Volltexte eingebunden.
+Eigene Projektdateien: [GNU GPL v2.0 only](LICENSE). Die Kartengeometrie aus [Natural Earth](assets/README.md) bleibt **Public Domain**; Wissenschaftspublikationen werden nur verlinkt.
 
 [AGENTS.md](AGENTS.md) legt verbindliche wissenschaftliche und technische Entwicklungsregeln fest.

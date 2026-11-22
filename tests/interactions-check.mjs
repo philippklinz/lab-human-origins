@@ -1,5 +1,6 @@
 /* Actual browser functional tests. All six LAB05 modules, scientific model limits, and UI. */
 import { chromium } from 'playwright';
+import { readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 const root=resolve(fileURLToPath(new URL('..',import.meta.url)));
@@ -57,10 +58,21 @@ try{
  });
  await check('05_ausbreitung.html',async p=>{
   await assert(p,()=>window.HumanMigration.siteCount===7,'Seven sites');
+
+  const svgAsset=readFileSync(join(root,'assets/world-natural-earth-110m.svg'),'utf8');
+  if(!svgAsset.includes('Natural Earth')||(svgAsset.match(/<path /g)||[]).length<100)throw new Error('Natural Earth SVG incomplete');
+  await assert(p,()=>document.querySelector('#migration-art image[data-map-baselayer="natural-earth"]')?.getAttribute('href')==='assets/world-natural-earth-110m.svg','Natural Earth image is embedded');
+  await assert(p,()=>Math.abs(window.HumanMigration.project(34.226,109.477).x-771.94)<.2&&Math.abs(window.HumanMigration.project(34.226,109.477).y-148.73)<.2,'Geographic projection at Shangchen');
+  await assert(p,()=>window.HumanMigration.sites.length===7&&window.HumanMigration.sites.every(s=>Number.isFinite(s.lat)&&Number.isFinite(s.lon)),'All sites have coordinates');
+  await assert(p,()=>document.querySelectorAll('#migration-art [data-site-pin]').length===7,'Seven map pins');
+  await p.locator('#migration-art [data-site-pin="denisova"]').click();
+  await assert(p,()=>document.querySelector('#migration-name').textContent.includes('Denisova'),'Map markers are interactive');
+
   await p.locator('[data-site="omo"]').click();
   await assert(p,()=>document.querySelector('#migration-text').textContent.includes('Mindestalter'),'Minimum age Omo');
   await p.locator('#migration-routes').click();await p.locator('#migration-genes').click();
   await assert(p,()=>document.querySelector('#migration-routes').getAttribute('aria-pressed')==='true'&&document.querySelector('#migration-genes').getAttribute('aria-pressed')==='true','Layer toggles');
+  await assert(p,()=>document.querySelectorAll('#migration-art [data-map-overlay]').length===2,'Both optional map overlays are rendered');
   await p.locator('#migration-quiz button').nth(2).click();
   await assert(p,()=>document.querySelector('#migration-quiz-feedback').dataset.ok==='true','Denisovan genetic exchange quiz');
  });
