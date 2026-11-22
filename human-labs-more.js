@@ -39,16 +39,20 @@ function artifacts(){
  render();
 }
 function migrations(){
- // Coordinates refer to SYMBOLIC positions in a non-georeferenced drawing.
+ // Approximate modern geographic coordinates; present-day Natural Earth coastline, NOT palaeogeography.
  const sites=[
- {id:'lomekwi',name:'Lomekwi 3',time:'3,3 Ma',place:'Kenia, Afrika',x:319,y:216,kind:'Steinartefakte in datiertem Fundkontext',desc:'Frühe Werkzeuge zeigen technisches Verhalten lange vor den späteren Homo-sapiens-Populationen. Kein Nachweis einer Wanderroute.',limit:'Die Zuordnung der Artefakthersteller zu einer bestimmten Homininenart ist ungeklärt.',source:'https://www.nature.com/articles/nature14464'},
- {id:'china',name:'Lössplateau in China',time:'~2,1 Ma',place:'China, Asien',x:526,y:149,kind:'Datierte Steinwerkzeuge',desc:'Die Fundstellen zeigen eine frühe Homininenpräsenz außerhalb Afrikas; sie sind archäologische, nicht zwingend taxonomisch eindeutig zuordenbare Belege.',limit:'Aus den Artefakten folgt keine exakt bekannte individuelle Migrationsroute oder Artidentität.',source:'https://www.nature.com/articles/s41586-018-0299-4'},
- {id:'dmanisi',name:'Dmanisi',time:'~1,8 Ma',place:'Georgien, Westasien',x:404,y:135,kind:'Fossilien und archäologischer Kontext',desc:'Ein wichtiger früher fossiler Nachweis von Homo außerhalb Afrikas. Die Funde helfen, frühe Ausbreitungen zu rekonstruieren.',limit:'Dmanisi ist nicht der Beginn der gesamten Besiedlung Asiens und nicht zwangsläufig ein direkter Vorfahr moderner Menschen.',source:'https://www.nature.com/articles/s41586-018-0299-4'},
- {id:'jebel',name:'Jebel Irhoud',time:'315 ± 34 ka',place:'Marokko, Afrika',x:259,y:154,kind:'Fossilien, Feuersteine und Thermolumineszenz',desc:'Frühe Homo-sapiens-Fossilien zeigen ein Mosaik von Merkmalen. Der Fundort liefert einen wichtigen Altersanker für frühe Formen unserer Art.',limit:'Nicht der Nachweis eines einzigen geografischen Ursprungs der ganzen Art.',source:'https://www.nature.com/articles/nature22336'},
- {id:'omo',name:'Omo I',time:'Mindestens 233 ± 22 ka',place:'Äthiopien, Afrika',x:331,y:204,kind:'Fossil und stratigraphisch überlagernde Asche',desc:'Die datierte vulkanische Asche liegt über der fossilführenden Schicht; daher wird ein Mindestalter der Fossilien abgeleitet.',limit:'Das Fossil wurde nicht selbst auf ein exaktes Alter von 233.000 Jahren datiert.',source:'https://www.nature.com/articles/s41586-021-04275-8'},
- {id:'misliya',name:'Misliya-Höhle',time:'~177–194 ka',place:'Israel, Levante',x:368,y:155,kind:'Fossile Oberkieferreste und Datierung',desc:'Ein früher Homo-sapiens-Nachweis außerhalb Afrikas, dessen Einordnung Hinweise auf mehrfache Ausbreitungsphasen liefert.',limit:'Aus einer Fundstelle lässt sich keine dauerhafte und durchgehende Besiedlungswelle rekonstruieren.',source:'https://doi.org/10.1126/science.aap8369'},
- {id:'denisova',name:'Denisova-Höhle',time:'Genom publiziert 2010',place:'Sibirien, Asien',x:503,y:124,kind:'Alte DNA aus Knochen und Zähnen',desc:'Genetische Daten belegten eine eigenständige archaïsche menschliche Linie und ihre Verwandtschaft mit Neandertalern. Genfluss zu Vorfahren einiger heutiger Populationen wurde nachgewiesen.',limit:'Eine Fundstelle und ein Genom decken weder die gesamte damalige Ausbreitung noch alle Begegnungen ab.',source:'https://www.nature.com/articles/nature09710'}
+ {id:'lomekwi',name:'Lomekwi 3',time:'3,3 Ma',place:'Kenia, Afrika',lat:3.9,lon:35.9,dx:-13,dy:13,kind:'Steinartefakte in datiertem Fundkontext',desc:'Frühe Werkzeuge zeigen technisches Verhalten lange vor den späteren Homo-sapiens-Populationen. Kein Nachweis einer Wanderroute.',limit:'Die Zuordnung der Artefakthersteller zu einer bestimmten Homininenart ist ungeklärt.',source:'https://www.nature.com/articles/nature14464'},
+ {id:'china',name:'Lössplateau in China',time:'~2,1 Ma',place:'China, Asien',lat:34.226,lon:109.477,dx:0,dy:0,kind:'Datierte Steinwerkzeuge',desc:'Die Fundstellen zeigen eine frühe Homininenpräsenz außerhalb Afrikas; sie sind archäologische, nicht zwingend taxonomisch eindeutig zuordenbare Belege.',limit:'Aus den Artefakten folgt keine exakt bekannte individuelle Migrationsroute oder Artidentität.',source:'https://www.nature.com/articles/s41586-018-0299-4'},
+ {id:'dmanisi',name:'Dmanisi',time:'~1,8 Ma',place:'Georgien, Westasien',lat:41.337,lon:44.345,dx:0,dy:0,kind:'Fossilien und archäologischer Kontext',desc:'Ein wichtiger früher fossiler Nachweis von Homo außerhalb Afrikas. Die Funde helfen, frühe Ausbreitungen zu rekonstruieren.',limit:'Dmanisi ist nicht der Beginn der gesamten Besiedlung Asiens und nicht zwangsläufig ein direkter Vorfahr moderner Menschen.',source:'https://www.nature.com/articles/s41586-018-0299-4'},
+ {id:'jebel',name:'Jebel Irhoud',time:'315 ± 34 ka',place:'Marokko, Afrika',lat:31.87,lon:-8.87,dx:0,dy:0,kind:'Fossilien, Feuersteine und Thermolumineszenz',desc:'Frühe Homo-sapiens-Fossilien zeigen ein Mosaik von Merkmalen. Der Fundort liefert einen wichtigen Altersanker für frühe Formen unserer Art.',limit:'Nicht der Nachweis eines einzigen geografischen Ursprungs der ganzen Art.',source:'https://www.nature.com/articles/nature22336'},
+ {id:'omo',name:'Omo I',time:'Mindestens 233 ± 22 ka',place:'Äthiopien, Afrika',lat:5.4,lon:35.94,dx:13,dy:-10,kind:'Fossil und stratigraphisch überlagernde Asche',desc:'Die datierte vulkanische Asche liegt über der fossilführenden Schicht; daher wird ein Mindestalter der Fossilien abgeleitet.',limit:'Das Fossil wurde nicht selbst auf ein exaktes Alter von 233.000 Jahren datiert.',source:'https://www.nature.com/articles/s41586-021-04275-8'},
+ {id:'misliya',name:'Misliya-Höhle',time:'~177–194 ka',place:'Israel, Levante',lat:32.741,lon:34.972,dx:0,dy:0,kind:'Fossile Oberkieferreste und Datierung',desc:'Ein früher Homo-sapiens-Nachweis außerhalb Afrikas, dessen Einordnung Hinweise auf mehrfache Ausbreitungsphasen liefert.',limit:'Aus einer Fundstelle lässt sich keine dauerhafte und durchgehende Besiedlungswelle rekonstruieren.',source:'https://doi.org/10.1126/science.aap8369'},
+ {id:'denisova',name:'Denisova-Höhle',time:'Genom publiziert 2010',place:'Sibirien, Asien',lat:51.397,lon:84.676,dx:0,dy:0,kind:'Alte DNA aus Knochen und Zähnen',desc:'Genetische Daten belegten eine eigenständige archaïsche menschliche Linie und ihre Verwandtschaft mit Neandertalern. Genfluss zu Vorfahren einiger heutiger Populationen wurde nachgewiesen.',limit:'Eine Fundstelle und ein Genom decken weder die gesamte damalige Ausbreitung noch alle Begegnungen ab.',source:'https://www.nature.com/articles/nature09710'}
  ];
+ const project=(lat,lon)=>({x:(lon+180)/360*960,y:(90-lat)/180*480});
+ const point=(s)=>project(s.lat,s.lon);
+ const siteById=(id)=>sites.find(s=>s.id===id);
+ const asNumber=(n)=>n.toFixed(1);
  let selected='dmanisi',showRoutes=false,showGenes=false;
  const list=$('migration-sites');
  for(const s of sites){
@@ -60,23 +64,85 @@ function migrations(){
  function render(){
    const s=sites.find(x=>x.id===selected);if(!s)return;
    set('migration-name',s.name);set('migration-age',s.time+' / '+s.place);set('migration-text',s.desc);set('migration-type',s.kind);set('migration-limit',s.limit);$('migration-source').href=s.source;
-   let graphic='<rect width="660" height="365" fill="#102832"/>';
-   // Deliberately simplified continents, not a cartographic projection.
-   graphic+='<path d="M85 81L205 64L245 123L238 171L208 185L230 230L183 275L151 250L134 175L88 157Z" fill="#315358" stroke="#638b88" stroke-width="2"/>'+
-   '<path d="M238 125L323 99L358 125L344 179L395 195L389 263L340 297L308 243L295 190L251 176Z" fill="#42665f" stroke="#739587" stroke-width="2"/>'+
-   '<path d="M354 86L468 59L551 86L614 142L567 201L511 191L459 157L421 178L382 137L350 136Z" fill="#315358" stroke="#638b88" stroke-width="2"/>'+
-   '<path d="M515 256L575 245L597 281L547 312L520 293Z" fill="#315358" stroke="#638b88" stroke-width="2"/>';
-   if(showRoutes)graphic+='<g stroke="#9bdbcd" stroke-width="3" stroke-dasharray="6 8" fill="none" opacity=".85">'+
-     '<path d="M319 216Q355 155 404 135"/><path d="M319 216Q410 111 526 149"/><path d="M331 204Q347 155 368 155"/><path d="M368 155Q429 122 503 124"/></g>';
-   if(showGenes)graphic+='<g stroke="#e2ad7f" stroke-width="3" stroke-dasharray="4 6" fill="none">'+
-     '<path d="M503 124Q467 200 404 194"/><path d="M404 194Q375 175 368 155"/></g>';
+   let graphic='<rect width="960" height="480" fill="#102832"/>';
+   // Equirectangular graticule and real Natural Earth land outlines (vendored).
+   for(let lon=-150;lon<=150;lon+=30){
+     const x=project(0,lon).x;
+     graphic+='<line x1="'+asNumber(x)+'" y1="0" x2="'+asNumber(x)+'" y2="480" stroke="#94beb5" stroke-opacity=".13"/>';
+   }
+   for(let lat=-60;lat<=60;lat+=30){
+     const y=project(lat,0).y;
+     graphic+='<line x1="0" y1="'+asNumber(y)+'" x2="960" y2="'+asNumber(y)+'" stroke="#94beb5" stroke-opacity=".13"/>';
+   }
+   graphic+='<image data-map-baselayer="natural-earth" href="assets/world-natural-earth-110m.svg" x="0" y="0" width="960" height="480" preserveAspectRatio="xMidYMid meet"/>';
+   const regions=[
+     [185,157,'NORDAMERIKA'],[255,329,'SÜDAMERIKA'],[516,106,'EUROPA'],
+     [482,310,'AFRIKA'],[705,218,'ASIEN'],[836,372,'AUSTRALIEN']
+   ];
+   graphic+=regions.map(([x,y,name])=>'<text x="'+x+'" y="'+y+'" text-anchor="middle"'+
+     ' font-family="Liberation Mono,monospace" font-size="11" letter-spacing="1.3" fill="#b3d3cd" opacity=".76">'+name+'</text>').join('');
+   // Optional comparison lines use georeferenced endpoint positions;
+   // these are schematic spatial relationships, NEVER observed individual routes.
+   const links=[['lomekwi','dmanisi'],['lomekwi','china'],['omo','misliya'],['misliya','denisova']];
+   if(showRoutes){
+     graphic+='<g data-map-overlay="hypotheses" fill="none" stroke="#90e1cf" stroke-width="2.6"'+
+       ' stroke-dasharray="7 8" stroke-linecap="round" opacity=".85">';
+     for(const [a,b] of links){
+       const from=point(siteById(a)),to=point(siteById(b)),mx=(from.x+to.x)/2,my=(from.y+to.y)/2-30;
+       graphic+='<path data-link="'+a+'-'+b+'" d="M'+asNumber(from.x)+' '+asNumber(from.y)+
+         ' Q'+asNumber(mx)+' '+asNumber(my)+' '+asNumber(to.x)+' '+asNumber(to.y)+'"/>';
+     }
+     graphic+='</g>';
+   }
+   if(showGenes){
+     // Symbolic motif over Eurasia. NOT coordinates of admixture events.
+     graphic+='<g data-map-overlay="genetic-exchange" fill="none" stroke="#e8b583"'+
+       ' stroke-width="3" stroke-dasharray="5 7" stroke-linecap="round">'+
+       '<path d="M650 165Q715 95 775 157"/><path d="M655 175Q717 105 781 165"/>'+
+       '</g><text x="770" y="92" text-anchor="middle" fill="#efc7a2" font-size="12"'+
+       ' font-family="Liberation Mono,monospace">GENFLUSS (SYMBOLISCH)</text>';
+   }
+   // Closely neighbouring sites Omo I and Lomekwi use leader lines to make
+   // both selectable while keeping the actual anchor positions unmodified.
    graphic+=sites.map(site=>{
+     const raw=point(site),x=raw.x+(site.dx||0),y=raw.y+(site.dy||0);
      const active=site.id===selected;
-     return '<circle data-site-node="'+site.id+'" cx="'+site.x+'" cy="'+site.y+'" r="'+(active?11:6)+'" fill="'+(active?'#f2c99d':'#67c6b7')+'" stroke="#e6f7e8" stroke-width="1.7"/>';
+     const leader=site.dx||site.dy?'<path data-site-leader="'+site.id+
+       '" d="M'+asNumber(raw.x)+' '+asNumber(raw.y)+'L'+asNumber(x)+' '+asNumber(y)+
+       '" stroke="#b4cfc3" stroke-width="1.5" fill="none"/>'+
+       '<circle cx="'+asNumber(raw.x)+'" cy="'+asNumber(raw.y)+'" r="2.5" fill="#e2d3ad"/>':'';
+     return leader+'<g data-site-pin="'+site.id+'" role="button" tabindex="0"'+
+       ' aria-label="'+site.name+'" style="cursor:pointer">'+
+       '<title>'+site.name+' · '+site.time+'</title>'+
+       (active?'<circle cx="'+asNumber(x)+'" cy="'+asNumber(y)+
+       '" r="14" stroke="#f1c797" stroke-opacity=".55" stroke-width="2" fill="none"/>':'')+
+       '<circle data-site-node="'+site.id+'" cx="'+asNumber(x)+'" cy="'+asNumber(y)+
+       '" r="'+(active?8:6)+'" stroke="#e8faf1" stroke-width="2" fill="'+
+       (active?'#efc494':'#63c6b8')+'"/>'+
+       '<circle cx="'+asNumber(x)+'" cy="'+asNumber(y)+'" r="16" fill="#fff" opacity="0" pointer-events="all"/>'+
+       '</g>';
    }).join('');
-   graphic+='<text x="20" y="343" fill="#b5d6cc" font-family="monospace" font-size="11">SCHEMA / OHNE GEOGRAPHISCHEN MASSSTAB</text>';
+   const loc=point(s),mx=loc.x+(s.dx||0),my=loc.y+(s.dy||0);
+   const labelWidth=Math.max(100,Math.min(210,22+s.name.length*8));
+   const lx=mx+labelWidth+23<950?mx+18:mx-labelWidth-18;
+   const ly=Math.max(24,my-47);
+   graphic+='<path d="M'+asNumber(mx)+' '+asNumber(my)+'L'+asNumber(lx+5)+' '+
+     asNumber(ly+17)+'" stroke="#f0c9a0" stroke-width="1.2" fill="none"/>'+
+     '<rect x="'+asNumber(lx)+'" y="'+asNumber(ly)+'" width="'+labelWidth+
+     '" height="28" rx="4" fill="#e7f1ed" stroke="#d2dcd4"/>'+
+     '<text x="'+asNumber(lx+10)+'" y="'+asNumber(ly+19)+'"'+
+     ' font-family="Liberation Sans,Arial" font-weight="700" font-size="13" fill="#14333a">'+s.name+'</text>';
+   graphic+='<text x="18" y="461" fill="#b9d7cc" font-family="Liberation Mono,monospace" font-size="11">'+
+     'HEUTIGE KÜSTENLINIEN / NATURAL EARTH · PUBLIC DOMAIN</text>';
    $('migration-art').innerHTML=graphic;
-   $('migration-art').setAttribute('aria-label','Schematische Positionen von sieben Fundstellen; hervorgehoben '+s.name);
+   $('migration-art').setAttribute('aria-label','Weltkarte mit echten Küstenlinien und sieben näherungsweise verorteten Fundstellen; hervorgehoben '+s.name);
+   $('migration-art').querySelectorAll('[data-site-pin]').forEach(pin=>{
+     const choose=()=>{selected=pin.dataset.sitePin;render()};
+     pin.addEventListener('click',choose);
+     pin.addEventListener('keydown',event=>{
+       if(event.key==='Enter'||event.key===' '){event.preventDefault();choose()}
+     });
+   });
    $('migration-routes').setAttribute('aria-pressed',String(showRoutes));
    $('migration-genes').setAttribute('aria-pressed',String(showGenes));
    set('migration-layer-label',showRoutes||showGenes?'FUNDORTE + BEZIEHUNGEN':'FUNDORTE');
@@ -86,7 +152,10 @@ function migrations(){
  $('migration-genes').addEventListener('click',()=>{showGenes=!showGenes;render()});
  quiz('migration-quiz','migration-quiz-feedback','Alte Genome zeigen Genfluss zwischen Verwandtschaftslinien. Er beschreibt keine zielgerichtete Migration einzelner bekannter Personen.');
  render();
- window.HumanMigration=Object.freeze({siteCount:sites.length});
+ window.HumanMigration=Object.freeze({
+   siteCount:sites.length,project,
+   sites:sites.map(s=>Object.freeze({id:s.id,lat:s.lat,lon:s.lon}))
+ });
 }
 function evidence(){
  const cases=[
